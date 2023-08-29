@@ -11,8 +11,8 @@ const ROLES = {
     },
     constructor: {
         parts: [WORK, CARRY, MOVE],
-        minQuantity: 5,
-        energyLimit: 300
+        minQuantity: 10,
+        energyLimit: 600
     },
     repairer: {
         parts: [WORK, CARRY, MOVE],

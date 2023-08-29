@@ -39,6 +39,11 @@ var roleCollector = {
             return structures[0];
         }
         
+        //If there is no structure, we transfer the energy to an constructor creep
+        var constructorCreep = creep.pos.findClosestByPath(FIND_MY_CREEPS, {filter: creep => creep.memory.role == 'constructor' && creep.store.getUsedCapacity(RESOURCE_ENERGY) > 0});
+        if(constructorCreep){
+            return constructorCreep;
+        }
     },
     
     _decideNextAction: function(creep){
@@ -70,7 +75,6 @@ var roleCollector = {
         
         var nearbyConstructors = creep.pos.findInRange(FIND_MY_CREEPS, 1, {filter: otherCreep => otherCreep.memory.role === 'constructor'});
         if(nearbyConstructors.length > 0){
-            console.log(creep.name);
             creep.transfer(nearbyConstructors[0],RESOURCE_ENERGY);
             target = null;
         }
