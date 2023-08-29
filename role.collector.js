@@ -68,6 +68,13 @@ var roleCollector = {
         
         var target = Game.getObjectById(creep.memory.target);
         
+        var nearbyConstructors = creep.pos.findInRange(FIND_MY_CREEPS, 1, {filter: otherCreep => otherCreep.memory.role === 'constructor'});
+        if(nearbyConstructors.length > 0){
+            console.log(creep.name);
+            creep.transfer(nearbyConstructors[0],RESOURCE_ENERGY);
+            target = null;
+        }
+        
         if(!target || (creep.memory.state != 'attacking' && creep.room.find(FIND_HOSTILE_CREEPS).length > 0)){
             this._decideNextAction(creep);
             target = this._determinateTarget(creep);

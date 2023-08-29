@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleCollector= require('role.collector');
 var roleRepairer = require('role.repairer');
+var roleConstructor = require('role.constructor');
 
 module.exports = {
 
@@ -28,6 +29,9 @@ module.exports = {
             }
             if(creep.memory.role == 'explorer'){
                 roleExplorer.run(creep);
+            }
+            if(creep.memory.role == 'constructor'){
+                roleConstructor.run(creep);
             }
         }
     }
