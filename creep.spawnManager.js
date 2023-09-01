@@ -2,17 +2,17 @@ const ROLES = {
     harvester: {
         parts: [WORK, WORK, MOVE],
         minQuantity: 2,
-        energyLimit: 600
+        energyLimit: 900
     },
     collector: {
         parts: [MOVE, ATTACK, CARRY],
-        minQuantity: 10,
-        energyLimit: 600
+        minQuantity: 15,
+        energyLimit: 900
     },
     constructor: {
         parts: [WORK, CARRY, MOVE],
         minQuantity: 10,
-        energyLimit: 600
+        energyLimit: 900
     },
     repairer: {
         parts: [WORK, CARRY, MOVE],

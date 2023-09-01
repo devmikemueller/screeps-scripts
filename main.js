@@ -19,25 +19,18 @@ module.exports.loop = function () {
         }
     }
     
-    const resourcePosition = new RoomPosition(8, 32, 'E48S33');
+    //const resourcePosition = new RoomPosition(8, 32, 'E48S33');
 
-    let availableSpaces = 0;
+    //let availableSpaces = 0;
 
-    for (let dx = -1; dx <= 1; dx++) {
-        for (let dy = -1; dy <= 1; dy++) {
-            const terrain = Game.map.getTerrainAt(resourcePosition.x + dx, resourcePosition.y + dy, resourcePosition.roomName);
-            console.log(terrain + "-" + "X: " + (resourcePosition.x + dx) + "/ Y: " + (resourcePosition.y + dy));
-            if (terrain === 'plain' || terrain === 'swamp') {
-                availableSpaces++;
-            }
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
+    //for (let dx = -1; dx <= 1; dx++) {
+    //    for (let dy = -1; dy <= 1; dy++) {
+    //       const terrain = Game.map.getTerrainAt(resourcePosition.x + dx, resourcePosition.y + dy, resourcePosition.roomName);
+    //        console.log(terrain + "-" + "X: " + (resourcePosition.x + dx) + "/ Y: " + (resourcePosition.y + dy));
+    //        if (terrain === 'plain' || terrain === 'swamp') {
+    //            availableSpaces++;
+    //        }
+    //    }
+    //}
     
 }
