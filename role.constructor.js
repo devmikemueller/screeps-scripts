@@ -8,7 +8,11 @@ var roleConstructor = {
     },
     
     _findCollectTarget: function(creep){
-        var collectorCreeps = creep.room.find(FIND_MY_CREEPS, {filter: creep => creep.memory.role === 'collector' && creep.store.getUsedCapacity(RESOURCE_ENERGY) > 0});
+        var containers = creep.room.find(FIND_STRUCTURES, { filter: structure => structure.structureType === STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 0 });
+        if(containers.length > 0){
+            return creep.pos.findClosestByPath(containers);
+        }
+        var collectorCreeps = creep.room.find(FIND_MY_CREEPS, {filter: creep => creep.memory.role === 'collector' && creep.store.getUsedCapacity(RESOURCE_ENERGY) > 0 });
         if(collectorCreeps.length > 0){
             return creep.pos.findClosestByPath(collectorCreeps);
         }
@@ -43,9 +47,18 @@ var roleConstructor = {
         if(target){
             switch(creep.memory.currentTask){
                 case 'collecting':
-                    creep.moveTo(target);
-                    if(creep.store.getFreeCapacity() == 0){
-                        creep.memory.target = null;
+                    if(target.structureType == STRUCTURE_CONTAINER){
+                        if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                            creep.moveTo(target);
+                        }else{
+                            creep.memory.target = null;
+                        }
+                    }
+                    if(target instanceof Creep){
+                        creep.moveTo(target);
+                        if(creep.store.getFreeCapacity() == 0){
+                            creep.memory.target = null;
+                        }
                     }
                     break;
                 case 'building':
